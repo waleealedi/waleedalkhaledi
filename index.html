@@ -7,10 +7,10 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #e0f7fa, #e1bee7); 
       margin: 0;
       padding: 0;
       color: #333;
+      transition: background 0.5s ease;
     }
 
     header {
@@ -34,9 +34,15 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       margin-bottom: 25px;
       backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
     }
 
-    #quote-box {
+    .info-box:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    #quote-box, #tip-box, #fact-box {
       font-size: 1.2rem;
       text-align: center;
       margin-top: 20px;
@@ -56,20 +62,12 @@
       display: block;
       margin-left: auto;
       margin-right: auto;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     button:hover {
       background-color: #5e35b1;
-    }
-
-    footer {
-      background-color: #ede7f6;
-      text-align: center;
-      padding: 15px;
-      font-size: 14px;
-      color: #555;
-      margin-top: 40px;
+      transform: scale(1.05);
     }
   </style>
 </head>
@@ -82,28 +80,32 @@
 
   <section>
     <div class="info-box">
-      <h2>Project Description</h2>
-      <p>This project is a simple Random Quote Generator built using HTML, CSS, and JavaScript. Every time the user clicks the button, a new quote is displayed randomly from a set of motivational and inspiring quotes.</p>
-    </div>
-
-    <div class="info-box">
-      <h2>Personal Information</h2>
-      <ul>
-        <li><strong>Name:</strong> Waleed Alkhaledi</li>
-        <li><strong>Major:</strong> Computer Engineering</li>
-        <li><strong>Email:</strong> waleed@icloud.com</li>
-      </ul>
-    </div>
-
-    <div class="info-box">
       <h2>Random Quote</h2>
       <div id="quote-box">Click the button to see a quote!</div>
-      <button onclick="generateQuote()">Generate Quote</button>
+      <button onclick="generateContent('quote')">Generate Quote</button>
+    </div>
+
+    <div class="info-box">
+      <h2>Daily Tip</h2>
+      <div id="tip-box">Click the button to get a daily tip!</div>
+      <button onclick="generateContent('tip')">Get a Tip</button>
+    </div>
+
+    <div class="info-box">
+      <h2>Fun Fact</h2>
+      <div id="fact-box">Click the button to learn a fun fact!</div>
+      <button onclick="generateContent('fact')">Get a Fact</button>
+    </div>
+
+    <div class="info-box">
+      <h2>Color Changer</h2>
+      <div id="color-info">Click to change the background color!</div>
+      <button onclick="changeColor()">Change Color</button>
     </div>
   </section>
 
   <footer>
-    &copy; 2025 Waleed Alkhaledi. All rights reserved.
+    © 2025 Waleed Alkhaledi. All rights reserved.
   </footer>
 
   <script>
@@ -116,9 +118,43 @@
       "The only limit to our realization of tomorrow is our doubts of today. – Franklin D. Roosevelt"
     ];
 
-    function generateQuote() {
-      const randomIndex = Math.floor(Math.random() * quotes.length);
-      document.getElementById("quote-box").textContent = quotes[randomIndex];
+    const tips = [
+      "Start your day with a glass of water to stay hydrated!",
+      "Take a 5-minute break every hour to refresh your mind.",
+      "Write down your goals for the day to stay focused.",
+      "Practice deep breathing to reduce stress.",
+      "Smile more—it can instantly boost your mood!",
+      "Organize your workspace for better productivity."
+    ];
+
+    const facts = [
+      "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still edible!",
+      "Octopuses have three hearts.",
+      "The shortest war in history lasted 38 minutes.",
+      "A group of flamingos is called a 'flamboyance'.",
+      "Bananas are berries, but strawberries aren’t!",
+      "The Eiffel Tower can be 15 cm taller in summer due to thermal expansion."
+    ];
+
+    function generateContent(type) {
+      const randomIndex = Math.floor(Math.random() * (type === 'quote' ? quotes.length : type === 'tip' ? tips.length : facts.length));
+      let content = '';
+      if (type === 'quote') {
+        content = quotes[randomIndex];
+        document.body.style.background = `linear-gradient(to right, #ff9999, #66b3ff)`;
+      } else if (type === 'tip') {
+        content = tips[randomIndex];
+        document.body.style.background = `linear-gradient(to right, #99ff99, #ffcc99)`;
+      } else if (type === 'fact') {
+        content = facts[randomIndex];
+        document.body.style.background = `linear-gradient(to right, #ff99cc, #cc99ff)`;
+      }
+      document.getElementById(`${type}-box`).textContent = content;
+    }
+
+    function changeColor() {
+      const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+      document.body.style.background = `linear-gradient(to right, ${randomColor}, ${randomColor}d1)`;
     }
   </script>
 
