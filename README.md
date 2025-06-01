@@ -1,1 +1,126 @@
-# waleedalkhaledi
+# <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Random Quote Generator - Waleed Alkhaledi</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #e1bee7); 
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #7e57c2;
+      color: white;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    section {
+      padding: 30px;
+      max-width: 700px;
+      margin: 30px auto;
+    }
+
+    .info-box {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin-bottom: 25px;
+      backdrop-filter: blur(5px);
+    }
+
+    #quote-box {
+      font-size: 1.2rem;
+      text-align: center;
+      margin-top: 20px;
+      color: #4a148c;
+      min-height: 50px;
+    }
+
+    button {
+      background-color: #7e57c2;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #5e35b1;
+    }
+
+    footer {
+      background-color: #ede7f6;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #555;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Random Quote Generator</h1>
+    <p>By Waleed Alkhaledi</p>
+  </header>
+
+  <section>
+    <div class="info-box">
+      <h2>Project Description</h2>
+      <p>This project is a simple Random Quote Generator built using HTML, CSS, and JavaScript. Every time the user clicks the button, a new quote is displayed randomly from a set of motivational and inspiring quotes.</p>
+    </div>
+
+    <div class="info-box">
+      <h2>Personal Information</h2>
+      <ul>
+        <li><strong>Name:</strong> Waleed Alkhaledi</li>
+        <li><strong>Major:</strong> Computer Engineering</li>
+        <li><strong>Email:</strong> waleed@icloud.com</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h2>Random Quote</h2>
+      <div id="quote-box">Click the button to see a quote!</div>
+      <button onclick="generateQuote()">Generate Quote</button>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Waleed Alkhaledi. All rights reserved.
+  </footer>
+
+  <script>
+    const quotes = [
+      "The best way to get started is to quit talking and begin doing. – Walt Disney",
+      "Success is not in what you have, but who you are. – Bo Bennett",
+      "Don’t watch the clock; do what it does. Keep going. – Sam Levenson",
+      "The future depends on what you do today. – Mahatma Gandhi",
+      "Believe you can and you're halfway there. – Theodore Roosevelt",
+      "The only limit to our realization of tomorrow is our doubts of today. – Franklin D. Roosevelt"
+    ];
+
+    function generateQuote() {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      document.getElementById("quote-box").textContent = quotes[randomIndex];
+    }
+  </script>
+
+</body>
+</html>
